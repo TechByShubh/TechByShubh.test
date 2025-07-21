@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechByShubh | Login</title>
+  <script src="https://kit.fontawesome.com/97ebdf5864.js" crossorigin="anonymous"></script>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: url(./bg.png) no-repeat;
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 400px;
+      height: 580px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .brand {
+      color: #fff;
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-bottom: -10px;
+    }
+
+    h2 {
+      color: #fff;
+      font-size: 2em;
+      text-transform: uppercase;
+      padding: 20px 0 10px;
+    }
+
+    .form-group {
+      position: relative;
+      width: 330px;
+      margin: 30px 0;
+      border-bottom: 3px solid #fff;
+    }
+
+    .form-group input {
+      width: 100%;
+      height: 50px;
+      padding: 0 35px 0 10px;
+      font-size: 1.2em;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 1.2em;
+      color: #fff;
+      transition: 0.5s;
+    }
+
+    input:focus ~ label,
+    input:valid ~ label {
+      top: -5px;
+    }
+
+    .form-group i {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 1.2em;
+    }
+
+    p {
+      text-align: center;
+      color: #fff;
+      margin: 10px 0;
+    }
+
+    p > a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    p > a:hover {
+      text-decoration: underline;
+      font-style: italic;
+    }
+
+    #btn, #googleSignIn {
+      width: 100%;
+      height: 50px;
+      border-radius: 40px;
+      border: none;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+
+    #btn:hover, #googleSignIn:hover {
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    #googleSignIn {
+      background-color: white;
+      color: #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="brand">TechByShubh</div>
+    <h2>Login</h2>
+    <form onsubmit="return false;">
+      <div class="form-group">
+        <input type="email" required />
+        <label>Email</label>
+        <i class="fa-solid fa-envelope"></i>
+      </div>
+
+      <div class="form-group">
+        <input type="password" required />
+        <label>Password</label>
+        <i class="fa-solid fa-lock"></i>
+      </div>
+
+      <p>
+        <input type="checkbox" />Remember Me
+      </p>
+      <p>
+        <a href="#">Forget Password</a>
+      </p>
+
+      <input id="btn" type="submit" value="Login" />
+      <button id="googleSignIn"><i class="fab fa-google"></i> Sign in with Google</button>
+
+      <p>Don't have an account? <a href="#">Register</a></p>
+    </form>
+  </div>
+
+  <script>
+    // Firebase config from your project
+    const firebaseConfig = {
+      apiKey: "AIzaSyDz6H1ApCd5uQRqiV1_wFSt5bpGLE_1C3E",
+      authDomain: "techbyshubhin-19573.firebaseapp.com",
+      projectId: "techbyshubhin-19573",
+      storageBucket: "techbyshubhin-19573.appspot.com",
+      messagingSenderId: "11220560315",
+      appId: "1:11220560315:web:3784befdffeaaba018bc9e",
+      measurementId: "G-42JCX6SPR9"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Google Sign-In
+    document.getElementById('googleSignIn').addEventListener('click', function () {
+      const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider)
+  .then((result) => {
+    const user = result.user;
+    console.log("Logged in as:", user.displayName);
+    window.location.href = "home.html";  // Redirect to home.html
+  })
+
+        .catch((error) => {
+          console.error(error);
+          alert("Google login failed: " + error.message);
+        });
+    });
+  </script>
+</body>
+</html>

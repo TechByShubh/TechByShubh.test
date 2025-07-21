@@ -1,0 +1,202 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      setDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDz6H1ApCd5uQRqiV1_wFSt5bpGLE_1C3E",
+      authDomain: "techbyshubhin-19573.firebaseapp.com",
+      projectId: "techbyshubhin-19573",
+      appId: "1:11220560315:web:3784befdffeaaba018bc9e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    function toggleEdit(field) {
+      const span = document.getElementById(field);
+      const input = document.getElementById(field + '-input');
+      const btn = document.getElementById(field + '-btn');
+
+      if (input.style.display === 'none') {
+        input.style.display = 'inline';
+        input.value = span.textContent;
+        span.style.display = 'none';
+        btn.textContent = 'Save';
+      } else {
+        span.textContent = input.value;
+        span.style.display = 'inline';
+        input.style.display = 'none';
+        btn.textContent = 'Edit';
+        saveToFirestore(field, input.value);
+      }
+    }
+
+    async function saveToFirestore(field, value) {
+      const user = auth.currentUser;
+      if (user) {
+        const ref = doc(db, "users", user.uid);
+        const existing = await getDoc(ref);
+        if (existing.exists()) {
+          await setDoc(ref, { [field]: value }, { merge: true });
+        } else {
+          await setDoc(ref, {
+            name: user.displayName || '',
+            email: user.email || '',
+            phone: user.phoneNumber || '',
+            [field]: value
+          });
+        }
+      }
+    }
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "Login.html";
+    return;
+  }
+
+  try {
+    const ref = doc(db, "users", user.uid);
+    const snap = await getDoc(ref);
+
+    // If no data, redirect to login
+    if (!snap.exists() || Object.keys(snap.data()).length === 0) {
+      // Optional: Clear stale user session
+      await auth.signOut();
+      window.location.href = "Login.html";
+      return;
+    }
+
+    const data = snap.data();
+    document.getElementById("name").textContent = data.name || user.displayName || "Not Provided";
+    document.getElementById("email").textContent = data.email || user.email || "Not Provided";
+    document.getElementById("phone").textContent = data.phone || user.phoneNumber || "Not Provided";
+
+    document.getElementById("name-input").value = document.getElementById("name").textContent;
+    document.getElementById("email-input").value = document.getElementById("email").textContent;
+    document.getElementById("phone-input").value = document.getElementById("phone").textContent;
+
+  } catch (err) {
+    console.error("Error fetching user data:", err);
+    window.location.href = "Login.html";
+  }
+});
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Translucent UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Inter, 'Noto Sans', sans-serif;
+      background: url('bgcmn.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .glow-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 50;
+      background: #000;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow:
+        0 0 10px rgba(0, 255, 255, 0.6),
+        0 0 20px rgba(0, 255, 255, 0.5),
+        0 0 30px rgba(0, 255, 255, 0.4),
+        0 0 40px rgba(0, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .glow-button:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 15px rgba(0, 255, 255, 0.8),
+        0 0 25px rgba(0, 255, 255, 0.6),
+        0 0 40px rgba(0, 255, 255, 0.5),
+        0 0 60px rgba(0, 255, 255, 0.4);
+    }
+
+    .glow-button:active {
+      transform: scale(0.95);
+      box-shadow:
+        0 0 20px rgba(0, 255, 255, 1),
+        0 0 30px rgba(0, 255, 255, 0.9),
+        0 0 50px rgba(0, 255, 255, 0.8),
+        0 0 70px rgba(0, 255, 255, 0.7);
+    }
+  </style>
+</head>
+<body class="text-black">
+
+  <a href="Home.html" class="glow-button">← Home</a>
+
+  <div class="flex min-h-screen items-center justify-center px-4">
+    <div class="w-full max-w-6xl bg-white/40 rounded-2xl shadow-2xl p-6 flex gap-6">
+
+      <div class="w-80 bg-white/50 rounded-2xl shadow-lg p-4 flex flex-col justify-between min-h-[700px]">
+        <div class="space-y-4">
+          <div class="bg-white p-4 rounded-xl shadow">
+            <p class="text-lg font-semibold text-black">Account Setting</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow">
+            <p class="text-lg font-semibold text-black">Orders</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1 bg-white/40 rounded-2xl shadow-xl p-6">
+        <h1 class="text-4xl font-bold mb-6 text-black">Account Settings</h1>
+
+        <div class="space-y-6">
+
+          <div>
+            <h2 class="text-2xl font-bold text-black mb-2">Profile</h2>
+            <div class="bg-white p-4 rounded-xl shadow flex justify-between items-center">
+              <p class="text-black">Name: <span id="name">Loading...</span><input id="name-input" class="ml-2 border border-black rounded px-2" style="display:none"/></p>
+              <button id="name-btn" onclick="toggleEdit('name')" class="text-blue-600 hover:underline">Edit</button>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-black mb-2">Contact Information</h2>
+            <div class="bg-white p-4 rounded-xl shadow flex justify-between items-center">
+              <p class="text-black">Phone: <span id="phone">Loading...</span><input id="phone-input" class="ml-2 border border-black rounded px-2" style="display:none"/></p>
+              <button id="phone-btn" onclick="toggleEdit('phone')" class="text-blue-600 hover:underline">Edit</button>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-black mb-2">Email</h2>
+            <div class="bg-white p-4 rounded-xl shadow flex justify-between items-center">
+              <p class="text-black">Email: <span id="email">Loading...</span><input id="email-input" class="ml-2 border border-black rounded px-2" style="display:none"/></p>
+              <button id="email-btn" onclick="toggleEdit('email')" class="text-blue-600 hover:underline">Edit</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

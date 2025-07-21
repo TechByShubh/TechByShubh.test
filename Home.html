@@ -1,0 +1,409 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden dark group/design-root" 
+     style='font-family: "Space Grotesk", "Noto Sans", sans-serif; background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("ggg.png");'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#21284a] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <image href="pglogo.png" x="0" y="0" width="51" height="51" />
+              </svg>
+            </div>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">TechByShubh.in</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="Shop.html">Shop</a>
+              <a class="text-white text-sm font-medium leading-normal" href="Tutorials.html">Tutorials</a>
+              <a class="text-white text-sm font-medium leading-normal" href="Community.html">Community</a>
+              <a class="text-white text-sm font-medium leading-normal" href="About.html">About</a>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#000000] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+              >
+                <div class="text-white" data-icon="ShoppingCart" data-size="20px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M222.14,58.87A8,8,0,0,0,216,56H54.68L49.79,29.14A16,16,0,0,0,34.05,16H16a8,8,0,0,0,0,16h18L59.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,152,204a28,28,0,1,0,28-28H83.17a8,8,0,0,1-7.87-6.57L72.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,222.14,58.87ZM96,204a12,12,0,1,1-12-12A12,12,0,0,1,96,204Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,192,204Zm4-74.57A8,8,0,0,1,188.1,136H69.22L57.59,72H206.41Z"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </div>
+<!-- Profile Dropdown Widget -->
+<style>
+  .profile-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .profile-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #00008B; /* Dark Blue */
+    color: white;
+    border-radius: 8px;
+    width: 160px;
+    overflow: hidden;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+
+  .dropdown.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .dropdown a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: background 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .dropdown a:hover,
+  .dropdown a:active {
+    background-color: #8181fb; /* Highlight on hover or touch-hold */
+  }
+</style>
+
+<div style="position: relative; display: inline-block;">
+  <button class="profile-button" onclick="toggleDropdown()" aria-label="Open profile options">
+    <div
+      class="profile-image"
+      style='background-image: url("https://cdn-icons-png.flaticon.com/512/12225/12225935.png");'
+    ></div>
+  </button>
+
+  <div class="dropdown" id="profileDropdown">
+    <a href="userinfo.html">View Profile</a>
+    <a href="/help">Help</a>
+    <a href="/logout">Log Out</a>
+  </div>
+</div>
+
+<script>
+  function toggleDropdown() {
+    const dropdown = document.getElementById("profileDropdown");
+    dropdown.classList.toggle("active");
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (e) {
+    const dropdown = document.getElementById("profileDropdown");
+    const button = document.querySelector(".profile-button");
+
+    if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove("active");
+    }
+  });
+</script>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="@container">
+              <div class="@[480px]:p-4">
+                <div
+                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://i.pinimg.com/736x/90/81/a6/9081a600086de08e4a9f5b6f3ee67d29.jpg");'
+                >
+                  <div class="flex flex-col gap-2 text-center">
+                    <h1
+                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
+                    >
+                      Innovate. Build. Share.
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                      Explore the world of DIY electronics with TechByShubh.in. Learn, create, and share your projects with a community of makers.
+                    </h2>
+                  </div>
+                  <button
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#000000] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                  >
+                    <a class="truncate" href="Shop.html">Shop Now !</a>
+                  </button>
+                                <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://x.com/techbyshubhgg"target="_blank">
+                  <div class="text-[#ffffff]" data-icon="TwitterLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://www.instagram.com/esp_projects"target="_blank">
+                  <div class="text-[#ffffff]" data-icon="InstagramLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://github.com/TechByShubh"target="_blank">
+                  <div class="text-[#ffffff]" data-icon="GithubLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Projects⤵</h2>
+            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+              <div class="flex items-stretch p-4 gap-3">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <!-- Trigger Image -->
+<div onclick="openModal()"
+  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col cursor-pointer"
+  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAtiaR55nPE1ZPxlKhqnUuOY6cBESb6gYWjPCOUGv3JieD1zaN6uU58-_Jp_hY5HvbrM5qTGXI9G-NjCBCSMlYkn9kyb4NG8bR12DZrvOBqI6Ny61ckwOzFd1b0rjWGBTSUA-d2Zkispgy6iJdUgqxOw4ZT-EpwPwY42EtRJrZ8xBjmnObN_zHiQgbabVi1ZrguOU9RPGTiX3bexQCFUHZO0qpYNm6P2qwOCrz1Mge6jeQTKUFsJIS1P3ualHnC8acbHhHsDJWZrQ");'>
+</div>
+
+<!-- Modal -->
+<div id="popupModal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden flex items-center justify-center">
+  <div class="relative w-[95%] max-w-6xl max-h-[90%] bg-gradient-to-br from-blue-0 via-purple-0 to-green-0 rounded-3xl p-10 text-white overflow-y-auto shadow-2xl flex flex-col items-center">
+
+    <!-- Close Button -->
+    <button onclick="closeModal()" class="absolute top-6 right-8 text-white text-4xl font-bold hover:scale-110 transition-all">&times;</button>
+
+    <!-- Project Title -->
+    <h1 class="text-5xl font-bold mb-8 text-center w-full">Project Title Goes Here</h1>
+
+    <!-- Top Row: Image + Metadata -->
+    <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
+      <!-- Image -->
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtiaR55nPE1ZPxlKhqnUuOY6cBESb6gYWjPCOUGv3JieD1zaN6uU58-_Jp_hY5HvbrM5qTGXI9G-NjCBCSMlYkn9kyb4NG8bR12DZrvOBqI6Ny61ckwOzFd1b0rjWGBTSUA-d2Zkispgy6iJdUgqxOw4ZT-EpwPwY42EtRJrZ8xBjmnObN_zHiQgbabVi1ZrguOU9RPGTiX3bexQCFUHZO0qpYNm6P2qwOCrz1Mge6jeQTKUFsJIS1P3ualHnC8acbHhHsDJWZrQ"
+        alt="Popup Image" class="w-48 h-48 rounded-xl object-cover shadow-lg">
+
+      <!-- Description -->
+      <div class="flex-1 max-w-[60%] text-lg leading-relaxed space-y-4">
+        <p>
+          This is the context and explanation for your project. Use this area to explain the purpose, goals, and technical aspects of your creation.
+        </p>
+        <p>
+          Make it informative and easy to read. You can also include tools, technologies used, and challenges faced.
+        </p>
+      </div>
+    </div>
+
+    <!-- Embedded Video (Optional) -->
+    <div class="w-full flex justify-center mb-6">
+      <iframe class="rounded-xl shadow-xl w-full max-w-3xl aspect-video"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=yznH3f1WeZaNlrxK" 
+        title="Project Demo Video"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  function openModal() {
+    document.getElementById('popupModal').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('popupModal').classList.add('hidden');
+  }
+</script>
+
+                  <div>
+                    <p class="text-white text-base font-medium leading-normal">Smart Home Automation System</p>
+                    <p class="text-[#8e99cc] text-sm font-normal leading-normal">Control your home with a custom-built automation system.</p>
+                  </div>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+<!-- Trigger Image -->
+<div onclick="openModal()"
+  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col cursor-pointer"
+  style='background-image: url("https://www.shutterstock.com/shutterstock/videos/1099550285/thumb/1.jpg?ip=x480");'>
+</div>
+
+<!-- Modal -->
+<div id="popupModal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden flex items-center justify-center">
+  <div class="relative w-[95%] max-w-6xl max-h-[90%] bg-gradient-to-br from-blue-0 via-purple-0 to-green-0 rounded-3xl p-10 text-white overflow-y-auto shadow-2xl flex flex-col items-center">
+
+    <!-- Close Button -->
+    <button onclick="closeModal()" class="absolute top-6 right-8 text-white text-4xl font-bold hover:scale-110 transition-all">&times;</button>
+
+    <!-- Project Title -->
+    <h1 class="text-5xl font-bold mb-8 text-center w-full">Project Title Goes Here</h1>
+
+    <!-- Top Row: Image + Metadata -->
+    <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
+      <!-- Image -->
+      <img src="https://www.shutterstock.com/shutterstock/videos/1099550285/thumb/1.jpg?ip=x480"
+        alt="Popup Image" class="w-48 h-48 rounded-xl object-cover shadow-lg">
+
+      <!-- Description -->
+      <div class="flex-1 max-w-[60%] text-lg leading-relaxed space-y-4">
+        <p>
+          This is the context and explanation for your project. Use this area to explain the purpose, goals, and technical aspects of your creation.
+        </p>
+        <p>
+          Make it informative and easy to read. You can also include tools, technologies used, and challenges faced.
+        </p>
+      </div>
+    </div>
+
+    <!-- Embedded Video (Optional) -->
+    <div class="w-full flex justify-center mb-6">
+      <iframe class="rounded-xl shadow-xl w-full max-w-3xl aspect-video"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="Project Demo Video"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  function openModal() {
+    document.getElementById('popupModal').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('popupModal').classList.add('hidden');
+  }
+</script>
+                  <div>
+                    <p class="text-white text-base font-medium leading-normal">DIY Robotic Arm</p>
+                    <p class="text-[#8e99cc] text-sm font-normal leading-normal">Build your own robotic arm with detailed instructions.</p>
+                  </div>
+                </div>
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                  <!-- Trigger Image -->
+<div onclick="openModal()"
+  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col cursor-pointer"
+  style='background-image: url("https://wallpapercave.com/wp/wp11982918.jpg");'>
+</div>
+
+<!-- Modal -->
+<div id="popupModal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden flex items-center justify-center">
+  <div class="relative w-[95%] max-w-6xl max-h-[90%] bg-gradient-to-br from-blue-0 via-purple-0 to-green-0 rounded-3xl p-10 text-white overflow-y-auto shadow-2xl flex flex-col items-center">
+
+    <!-- Close Button -->
+    <button onclick="closeModal()" class="absolute top-6 right-8 text-white text-4xl font-bold hover:scale-110 transition-all">&times;</button>
+
+    <!-- Project Title -->
+    <h1 class="text-5xl font-bold mb-8 text-center w-full">Project Title Goes Here</h1>
+
+    <!-- Top Row: Image + Metadata -->
+    <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
+      <!-- Image -->
+      <img src="https://wallpapercave.com/wp/wp11982918.jpg"
+        alt="Popup Image" class="w-48 h-48 rounded-xl object-cover shadow-lg">
+
+      <!-- Description -->
+      <div class="flex-1 max-w-[60%] text-lg leading-relaxed space-y-4">
+        <p>
+          This is the context and explanation for your project. Use this area to explain the purpose, goals, and technical aspects of your creation.
+        </p>
+        <p>
+          Make it informative and easy to read. You can also include tools, technologies used, and challenges faced.
+        </p>
+      </div>
+    </div>
+
+    <!-- Embedded Video (Optional) -->
+    <div class="w-full flex justify-center mb-6">
+      <iframe class="rounded-xl shadow-xl w-full max-w-3xl aspect-video"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="Project Demo Video"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  function openModal() {
+    document.getElementById('popupModal').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('popupModal').classList.add('hidden');
+  }
+</script>
+                  <div>
+                    <p class="text-white text-base font-medium leading-normal">Custom LED Lighting Project</p>
+                    <p class="text-[#8e99cc] text-sm font-normal leading-normal">Create unique lighting effects with programmable LEDs.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">About TechByShubh.in</h2>
+            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4">
+              TechByShubh.in is a platform dedicated to empowering makers and electronics enthusiasts. We provide resources, tutorials, and project ideas to help you bring your DIY
+              electronics projects to life. Join our community and start building today!
+            </p>
+          </div>
+        </div>
+        <footer class="flex justify-center">
+          <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                <a class="text-[#8e99cc] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                <a class="text-[#8e99cc] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+                <a class="text-[#8e99cc] text-base font-normal leading-normal min-w-40" href="#">Contact Us</a>
+              </div>
+              <p class="text-[#8e99cc] text-base font-normal leading-normal">@2024 TechByShubh.in. All rights reserved.</p>
+            </footer>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
