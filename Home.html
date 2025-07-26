@@ -7,7 +7,57 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
     />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- Optional Tailwind suggestion to enable container queries -->
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {},
+    },
+    plugins: [
+      require('@tailwindcss/forms'),
+      require('@tailwindcss/container-queries'),
+    ]
+  };
+</script>
+
+<!-- Add the following responsive utility wrapper in CSS or Tailwind utility classes to manage layout shift -->
+<!-- Below CSS should be added at the end of your <head> in a <style> block, or better, use Tailwind classes as you've done -->
+
+<style>
+  /* Ensure body content adjusts to small screens properly */
+  body {
+    word-wrap: break-word;
+  }
+
+  @media screen and (max-width: 768px) {
+    .layout-container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    header {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 1rem;
+    }
+
+    .layout-content-container {
+      padding: 0 1rem;
+    }
+
+    .px-40 {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    footer .flex-wrap {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
     <title>Stitch Design</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
@@ -193,7 +243,7 @@
                 </div>
               </div>
             </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Projects⤵</h2>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Projects</h2>
             <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
               <div class="flex items-stretch p-4 gap-3">
                 <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
@@ -211,7 +261,7 @@
     <button onclick="closeModal()" class="absolute top-6 right-8 text-white text-4xl font-bold hover:scale-110 transition-all">&times;</button>
 
     <!-- Project Title -->
-    <h1 class="text-5xl font-bold mb-8 text-center w-full">Project Title Goes Here</h1>
+    <h1 class="text-5xl font-bold mb-8 text-center w-full">CUAV X7 Pro Flight Controller</h1>
 
     <!-- Top Row: Image + Metadata -->
     <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
@@ -222,10 +272,38 @@
       <!-- Description -->
       <div class="flex-1 max-w-[60%] text-lg leading-relaxed space-y-4">
         <p>
-          This is the context and explanation for your project. Use this area to explain the purpose, goals, and technical aspects of your creation.
+          The CUAV X7 Pro is one of the most advanced and expensive drone flight controller boards available, designed for high-end commercial and industrial applications. Built around the powerful 480 MHz ARM Cortex-M7 STM32H743 processor, it offers incredible performance for real-time flight operations. What sets it apart is its triple-redundant IMU system, which ensures flight stability and safety even in the harshest environments. This controller supports multiple GPS modules including RTK systems for centimeter-level accuracy, making it ideal for precision mapping, surveying, and autonomous missions.
+
+The CUAV X7 Pro features- 14 PWM outputs, multiple UARTs, I2C, and SPI interfaces, which allows it to integrate with a wide range of sensors and peripherals. Its compatibility with both PX4 and ArduPilot open-source firmware gives developers and researchers the flexibility to fully customize its behavior. The board is housed in a durable aluminum shield that protects it from electromagnetic interference and environmental damage. — justifying its premium price
         </p>
         <p>
-          Make it informative and easy to read. You can also include tools, technologies used, and challenges faced.
+          Main Processor:
+STM32H743VIT6
+
+32-bit ARM Cortex-M7 core
+
+480 MHz CPU speed
+
+2 MB Flash, 1 MB RAM
+
+Floating-point unit for fast real-time calculations
+
+Co-Processor (Failsafe / Redundancy):
+STM32F103 for I/O handling (optional backup system)
+
+IMUs (Inertial Measurement Units):
+Triple Redundant:
+
+3x Accelerometer + Gyroscope combos
+
+2x Magnetometers
+
+Temperature-compensated sensors for precision and stability
+
+Excellent for vibration rejection
+
+GNSS (GPS) Support:
+Supports high-precision GPS modules like CUAV NEO V2 Pro RTK, capable of centimeter-level accuracy using RTK.
         </p>
       </div>
     </div>
@@ -255,8 +333,8 @@
 </script>
 
                   <div>
-                    <p class="text-white text-base font-medium leading-normal">Smart Home Automation System</p>
-                    <p class="text-[#8e99cc] text-sm font-normal leading-normal">Control your home with a custom-built automation system.</p>
+                    <p class="text-white text-base font-medium leading-normal">CUAV X7 Pro Flight Controller</p>
+                    <p class="text-[#8e99cc] text-sm font-normal leading-normal">Control your primium drone architecture !.</p>
                   </div>
                 </div>
                 <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
@@ -279,7 +357,7 @@
     <!-- Top Row: Image + Metadata -->
     <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
       <!-- Image -->
-      <img src="https://www.shutterstock.com/shutterstock/videos/1099550285/thumb/1.jpg?ip=x480"
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmFDvTjGx2D2FSO9WmuoZGhlgAON6RyfEP6Do0BdKzmN-14Xd5edDHC4OhLqOI5DC38fNQ__aYO3Vs7KGnh9bfhhxj95RI9ytIZ_tFORncsTJIhSeJFCyFSgPFJp1cyM0ZHp2ZULzeOF4Qm7FTM7FwFY9BkR4BwLBK5jMs5uecnokv-WM4A9zaD1qy5VD80mFkBiur9DCZy2OgF2_AiBVWp9zNcxXqiQvlORuyd2Ab-3ed5TvBDrZdfgXpCOOOANK73MSg9OlXrg"
         alt="Popup Image" class="w-48 h-48 rounded-xl object-cover shadow-lg">
 
       <!-- Description -->
