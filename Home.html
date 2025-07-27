@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
     <link
       rel="stylesheet"
@@ -7,57 +8,7 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
     />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Optional Tailwind suggestion to enable container queries -->
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {},
-    },
-    plugins: [
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/container-queries'),
-    ]
-  };
-</script>
-
-<!-- Add the following responsive utility wrapper in CSS or Tailwind utility classes to manage layout shift -->
-<!-- Below CSS should be added at the end of your <head> in a <style> block, or better, use Tailwind classes as you've done -->
-
-<style>
-  /* Ensure body content adjusts to small screens properly */
-  body {
-    word-wrap: break-word;
-  }
-
-  @media screen and (max-width: 768px) {
-    .layout-container {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
-    }
-
-    header {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      gap: 1rem;
-    }
-
-    .layout-content-container {
-      padding: 0 1rem;
-    }
-
-    .px-40 {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
-    }
-
-    footer .flex-wrap {
-      flex-direction: column;
-      gap: 1rem;
-    }
-  }
-</style>
     <title>Stitch Design</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
@@ -67,7 +18,7 @@
 <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden dark group/design-root" 
      style='font-family: "Space Grotesk", "Noto Sans", sans-serif; background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("ggg.png");'>
       <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#21284a] px-10 py-3">
+        <header class="flex flex-wrap items-center justify-between whitespace-nowrap border-b border-solid border-b-[#21284a] px-4 sm:px-8 lg:px-10 py-3">
           <div class="flex items-center gap-4 text-white">
             <div class="size-4">
               <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,8 +139,8 @@
   });
 </script>
         </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+        <div class="px-4 sm:px-8 md:px-16 lg:px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1 mx-auto px-4 sm:px-6 md:px-10">
             <div class="@container">
               <div class="@[480px]:p-4">
                 <div
@@ -245,8 +196,8 @@
             </div>
             <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Projects</h2>
             <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
-              <div class="flex items-stretch p-4 gap-3">
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+              <div class="flex flex-wrap items-stretch p-4 gap-3 justify-center">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-[250px] sm:min-w-60">
                   <!-- Trigger Image -->
 <div onclick="openModal()"
   class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col cursor-pointer"
@@ -267,10 +218,10 @@
     <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
       <!-- Image -->
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtiaR55nPE1ZPxlKhqnUuOY6cBESb6gYWjPCOUGv3JieD1zaN6uU58-_Jp_hY5HvbrM5qTGXI9G-NjCBCSMlYkn9kyb4NG8bR12DZrvOBqI6Ny61ckwOzFd1b0rjWGBTSUA-d2Zkispgy6iJdUgqxOw4ZT-EpwPwY42EtRJrZ8xBjmnObN_zHiQgbabVi1ZrguOU9RPGTiX3bexQCFUHZO0qpYNm6P2qwOCrz1Mge6jeQTKUFsJIS1P3ualHnC8acbHhHsDJWZrQ"
-        alt="Popup Image" class="w-48 h-48 rounded-xl object-cover shadow-lg">
+        alt="Popup Image" class="w-32 h-32 sm:w-48 sm:h-48 rounded-xl object-cover shadow-lg">
 
       <!-- Description -->
-      <div class="flex-1 max-w-[60%] text-lg leading-relaxed space-y-4">
+      <div class="w-full md:flex-1 md:max-w-[60%] text-base leading-relaxed space-y-4">
         <p>
           The CUAV X7 Pro is one of the most advanced and expensive drone flight controller boards available, designed for high-end commercial and industrial applications. Built around the powerful 480 MHz ARM Cortex-M7 STM32H743 processor, it offers incredible performance for real-time flight operations. What sets it apart is its triple-redundant IMU system, which ensures flight stability and safety even in the harshest environments. This controller supports multiple GPS modules including RTK systems for centimeter-level accuracy, making it ideal for precision mapping, surveying, and autonomous missions.
 
@@ -337,7 +288,7 @@ Supports high-precision GPS modules like CUAV NEO V2 Pro RTK, capable of centime
                     <p class="text-[#8e99cc] text-sm font-normal leading-normal">Control your primium drone architecture !.</p>
                   </div>
                 </div>
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-[250px] sm:min-w-60">
 <!-- Trigger Image -->
 <div onclick="openModal()"
   class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col cursor-pointer"
@@ -358,10 +309,10 @@ Supports high-precision GPS modules like CUAV NEO V2 Pro RTK, capable of centime
     <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
       <!-- Image -->
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmFDvTjGx2D2FSO9WmuoZGhlgAON6RyfEP6Do0BdKzmN-14Xd5edDHC4OhLqOI5DC38fNQ__aYO3Vs7KGnh9bfhhxj95RI9ytIZ_tFORncsTJIhSeJFCyFSgPFJp1cyM0ZHp2ZULzeOF4Qm7FTM7FwFY9BkR4BwLBK5jMs5uecnokv-WM4A9zaD1qy5VD80mFkBiur9DCZy2OgF2_AiBVWp9zNcxXqiQvlORuyd2Ab-3ed5TvBDrZdfgXpCOOOANK73MSg9OlXrg"
-        alt="Popup Image" class="w-48 h-48 rounded-xl object-cover shadow-lg">
+        alt="Popup Image" class="w-32 h-32 sm:w-48 sm:h-48 rounded-xl object-cover shadow-lg">
 
       <!-- Description -->
-      <div class="flex-1 max-w-[60%] text-lg leading-relaxed space-y-4">
+      <div class="w-full md:flex-1 md:max-w-[60%] text-base leading-relaxed space-y-4">
         <p>
           This is the context and explanation for your project. Use this area to explain the purpose, goals, and technical aspects of your creation.
         </p>
@@ -399,7 +350,7 @@ Supports high-precision GPS modules like CUAV NEO V2 Pro RTK, capable of centime
                     <p class="text-[#8e99cc] text-sm font-normal leading-normal">Build your own robotic arm with detailed instructions.</p>
                   </div>
                 </div>
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
+                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-[250px] sm:min-w-60">
                   <!-- Trigger Image -->
 <div onclick="openModal()"
   class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col cursor-pointer"
@@ -420,10 +371,10 @@ Supports high-precision GPS modules like CUAV NEO V2 Pro RTK, capable of centime
     <div class="flex flex-wrap justify-center items-start gap-8 w-full mb-10">
       <!-- Image -->
       <img src="https://wallpapercave.com/wp/wp11982918.jpg"
-        alt="Popup Image" class="w-48 h-48 rounded-xl object-cover shadow-lg">
+        alt="Popup Image" class="w-32 h-32 sm:w-48 sm:h-48 rounded-xl object-cover shadow-lg">
 
       <!-- Description -->
-      <div class="flex-1 max-w-[60%] text-lg leading-relaxed space-y-4">
+      <div class="w-full md:flex-1 md:max-w-[60%] text-base leading-relaxed space-y-4">
         <p>
           This is the context and explanation for your project. Use this area to explain the purpose, goals, and technical aspects of your creation.
         </p>
@@ -472,7 +423,7 @@ Supports high-precision GPS modules like CUAV NEO V2 Pro RTK, capable of centime
         </div>
         <footer class="flex justify-center">
           <div class="flex max-w-[960px] flex-1 flex-col">
-            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+            <footer class="flex flex-col gap-6 px-4 sm:px-6 md:px-10 py-10 text-center @container">
               <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
                 <a class="text-[#8e99cc] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
                 <a class="text-[#8e99cc] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
